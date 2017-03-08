@@ -6,7 +6,7 @@ resource "aws_security_group" "dl-i-o-sh-sg" {
     protocol    = "tcp"
     from_port   = 80
     to_port     = 80
-    cidr_blocks = ["${data.fastly_ip_ranges.fastly.cidr_blocks}", "0.0.0.0/0"]
+    cidr_blocks = ["${data.fastly_ip_ranges.fastly.cidr_blocks}"]
   }
 
   ingress {
