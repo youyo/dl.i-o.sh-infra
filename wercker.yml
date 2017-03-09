@@ -13,8 +13,9 @@ test:
           -backend-config="region=us-east-2" \
           -backend-config="encrypt=true"
     - script:
-      name: Plan
+      name: Test
       code: |-
+        terraform validate
         terraform plan
   after-steps:
     - slack-notifier:
