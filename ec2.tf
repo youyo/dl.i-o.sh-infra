@@ -5,6 +5,7 @@ resource "aws_instance" "dl-i-o-sh" {
   subnet_id              = "${aws_subnet.vpc-dl-i-o-sh-public-subnet1.id}"
   availability_zone      = "${aws_subnet.vpc-dl-i-o-sh-public-subnet1.availability_zone}"
   vpc_security_group_ids = ["${aws_security_group.dl-i-o-sh-sg.id}"]
+  private_ip             = "10.10.10.10"
 
   root_block_device {
     volume_type           = "gp2"
@@ -45,8 +46,9 @@ resource "aws_eip" "eip_dl-i-o-sh" {
 }
 
 resource "aws_eip_association" "eip_dl-i-o-sh_assoc" {
-  instance_id   = "${aws_instance.dl-i-o-sh.id}"
-  allocation_id = "${aws_eip.eip_dl-i-o-sh.id}"
+  instance_id         = "${aws_instance.dl-i-o-sh.id}"
+  allocation_id       = "${aws_eip.eip_dl-i-o-sh.id}"
+  allow_reassociation = true
 }
 
 # key pair
